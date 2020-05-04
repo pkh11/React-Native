@@ -2,15 +2,16 @@ import React, { useState, Component } from 'react';
 import { Button, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import _ from 'underscore';
 import styled from 'styled-components/native';
+import Item from './components/Item';
 
 // styled components
 const Row = styled.View`
   flex-Direction: row;
 `
 const TodoItem = styled.View`
-  flexDirection: row;
-  width: 350;
-  justifyContent: space-between;
+flexDirection: row;
+width: 350;
+justifyContent: space-between;
 `
 const Input = styled.TextInput`
   width:300;
@@ -20,6 +21,9 @@ const Input = styled.TextInput`
 /* 
 <View style={{ flexDirection: 'row', width: 350, ... }}/>
 */
+
+
+
 export default function App() {
   const [ content, setContent ] = useState( 'Text here' );
   const [ list, setList ] = useState( [] );
@@ -47,10 +51,7 @@ export default function App() {
           <Button title="추가" onPress={ () => addItem() }></Button>
         </View>
         { list.map( item => (
-          <TodoItem key={ item.id } style={ [styles.row, styles.todoItem] }>
-            <Text>{ item.content }</Text>
-            <Button color={ '#f00' } title="삭제" onPress= { ()=> remove( item.id ) }></Button>
-          </TodoItem>
+          <Item key={ item.id } item={ item } remove={ remove }/>
         ) )}
       </ScrollView>
     </SafeAreaView>
